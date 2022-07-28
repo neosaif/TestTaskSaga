@@ -87,17 +87,17 @@ export const pagination = () => {
     const paginatedData = (value:number) => {        
         if(value <= totalPages && value >= 1){
             dispatch(setFilterSlice({ ...filter, ['page']: value }))
-            let query = `_page=${value}`
-            if (filter.name){
-                query+= `&name=${filter.name}`
-              }
-              if (filter._sort){
-                query+= `&_sort=${filter._sort}`
-              }
-              if (filter._order){
-                query+= `&_order=${filter._order}`
-              }
-            dispatch({ type: GET_USERS_LIST, query })
+            // let query = `_page=${value}`
+            // if (filter.name){
+            //     query+= `&name=${filter.name}`
+            //   }
+            //   if (filter._sort){
+            //     query+= `&_sort=${filter._sort}`
+            //   }
+            //   if (filter._order){
+            //     query+= `&_order=${filter._order}`
+            //   }
+            // dispatch({ type: GET_USERS_LIST, query })
         } 
     }
 
