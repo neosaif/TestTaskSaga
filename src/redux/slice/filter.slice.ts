@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const filter = createSlice({
     name: 'filter',
     initialState: {
-        page: 1,
+        _page: 1,
         name: '',
         _sort: 0,
         _order: 0

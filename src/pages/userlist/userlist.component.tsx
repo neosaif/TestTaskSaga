@@ -86,27 +86,16 @@ export const pagination = () => {
 
     const paginatedData = (value:number) => {        
         if(value <= totalPages && value >= 1){
-            dispatch(setFilterSlice({ ...filter, ['page']: value }))
-            // let query = `_page=${value}`
-            // if (filter.name){
-            //     query+= `&name=${filter.name}`
-            //   }
-            //   if (filter._sort){
-            //     query+= `&_sort=${filter._sort}`
-            //   }
-            //   if (filter._order){
-            //     query+= `&_order=${filter._order}`
-            //   }
-            // dispatch({ type: GET_USERS_LIST, query })
+            dispatch(setFilterSlice({ ...filter, ['_page']: value }))
         } 
     }
 
     return(
         <View style={{flexDirection:"row"}}>
             {pageButton('<<<',1)}
-            {pageButton('<',filter.page-1)}
-            {pageButton(filter.page.toString(),filter.page)}
-            {pageButton('>',filter.page+1)}
+            {pageButton('<',filter._page-1)}
+            {pageButton(filter._page.toString(),filter._page)}
+            {pageButton('>',filter._page+1)}
             {pageButton('>>>',totalPages)}
         </View> 
     )
@@ -117,7 +106,7 @@ export const filterSection = () => {
     const filter = useSelector((state : RootState) => state.filter)
 
     const searchByName = (name:string) => {
-        dispatch(setFilterSlice({ ...filter, ['name']: name, ['page']: 1 }))
+        dispatch(setFilterSlice({ ...filter, ['name']: name, ['_page']: 1 }))
       }
     
       const sortData = (value:string) => {
@@ -130,7 +119,7 @@ export const filterSection = () => {
     
       const clearsearch = () => {
         dispatch(setFilterSlice({
-          page: 1,
+          _page: 1,
           name: '',
           _sort: 0,
           _order: 0

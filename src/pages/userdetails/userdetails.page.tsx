@@ -11,7 +11,6 @@ const UserDetails = (props: Props) => {
     <View style={DetailsStyle.container}>
         {userEditForm()}
     </View>
-     
   );
 };
 

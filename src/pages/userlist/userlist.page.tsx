@@ -7,7 +7,7 @@ import {UsersStyles} from './userlist.style';
 import {User} from '../../interfaces/user.interface';
 import Spinner from '../../components/Loader/Loader.component';
 import {renderUsersList, renderFooter, addUser, pagination, filterSection} from './userlist.component';
-
+import {filterQuery} from '../../utils/functions/func';
 
 interface Props {}
 
@@ -15,18 +15,10 @@ const Users = (props: Props) => {
   const dispatch = useDispatch()
   const users = useSelector((state : RootState) => state.users)
   const filter = useSelector((state : RootState) => state.filter)
-  let query = `_page=${filter.page}`
-
+  
   useEffect(() => {
-    if (filter.name){
-      query+= `&name=${filter.name}`
-    }
-    if (filter._sort){
-      query+= `&_sort=${filter._sort}`
-    }
-    if (filter._order){
-      query+= `&_order=${filter._order}`
-    }
+    let query = filterQuery(filter)
+    console.warn(query);
     dispatch({ type: GET_USERS_LIST, query })
     // dispatch({ type: ENABLE_LOADING })
   }, [filter]);
